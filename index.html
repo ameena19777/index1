@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الحضور</title>
+  <style>
+    body {
+      font-family: Arial;
+      direction: rtl;
+      text-align: right;
+      padding: 20px;
+    }
+    input {
+      width: 300px;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>تسجيل الحضور</h2>
+
+  <form id="attendanceForm">
+    <label for="empId">الرقم الوظيفي:</label>
+    <input type="text" id="empId" required autofocus>
+
+    <label>الاسم:</label>
+    <input type="text" id="empName" disabled>
+
+    <label>القسم:</label>
+    <input type="text" id="empDept" disabled>
+
+    <button type="submit">تسجيل الحضور</button>
+  </form>
+
+  <script>
+    const employees = {
+      "1001": { name: "أحمد محمد", dept: "الموارد البشرية" },
+      "1002": { name: "سارة علي", dept: "تقنية المعلومات" },
+      "1003": { name: "خالد يوسف", dept: "المالية" }
+    };
+
+    document.getElementById('empId').addEventListener('input', function () {
+      const empId = this.value.trim();
+      const data = employees[empId];
+      if (data) {
+        document.getElementById('empName').value = data.name;
+        document.getElementById('empDept').value = data.dept;
+      } else {
+        document.getElementById('empName').value = "";
+        document.getElementById('empDept').value = "";
+      }
+    });
+
+    document.getElementById('attendanceForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert("✅ تم تسجيل الحضور بنجاح");
+    });
+  </script>
+
+</body>
+</html>
